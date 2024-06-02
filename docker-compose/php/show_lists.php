@@ -48,7 +48,9 @@ try {
         <h1 class="m-0">Οι λίστες εργασιών μου</h1>
         <?php if (!empty($lists)): ?>
             <form action="export_xml.php" method="post">
-                <button type="submit" name="export_xml">Εξαγωγη σε XML</button>
+                <button type="submit" name="export_xml" class="btn btn-link p-0" title="Εξαγωγή σε XML">
+                    <i class="fas fa-file-export"></i> <!-- Font Awesome export icon -->
+                </button>
             </form>
         <?php endif; ?>
     </div>

@@ -55,6 +55,12 @@ $csrf_token = $_SESSION['csrf_token'];
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
 
+        <label for="new_password">Νέος Κωδικός:</label>
+        <input type="password" name="new_password" id="new_password">
+
+        <label for="confirm_password">Επιβεβαίωση Κωδικού:</label>
+        <input type="password" name="confirm_password" id="confirm_password">
+
         <button type="submit">Επεξεργασία</button>
 
         <?php if (isset($_SESSION['errorMsg'])): ?>
@@ -73,5 +79,6 @@ $csrf_token = $_SESSION['csrf_token'];
             onclick="return confirm('Είστε βέβαιοι ότι θέλετε να διαγράψετε το προφίλ σας; Αυτή η πράξη δε μπορεί να αναιρεθεί.');">
     </form>
 </div>
+
 
 <?php include ('./partials/footer.php'); ?>

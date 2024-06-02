@@ -1,22 +1,22 @@
 <?php
 session_start();
-include ('./partials/head.php');
-include ('./partials/header.php');
+include('./partials/head.php');
+include('./partials/header.php');
 
-$list_id = $_GET['list_id'] ?? null;
+// Sanitize the list_id input
+$list_id = filter_input(INPUT_GET, 'list_id', FILTER_SANITIZE_NUMBER_INT);
 
 if (!$list_id) {
-    header("Location: login.php");
     $_SESSION['errorMsg'] = "Παρακαλώ πραγματοποιηστε είσοδο.";
+    header("Location: login.php");
     exit;
 }
-
 ?>
 <div class="container container-sm mt">
 
-    <form action="./submit-form/create_task.php?list_id=<?php echo $_GET['list_id']; ?>" method="post" class="edit-task-form">
+    <form action="./submit-form/create_task.php?list_id=<?php echo htmlspecialchars($list_id); ?>" method="post" class="edit-task-form">
         <h1>Δημιουργία νέας εργασίας στη λίστα</h1>
-        <input type="hidden" name="list_id" value="<?php echo $_GET['list_id']; ?>">
+        <input type="hidden" name="list_id" value="<?php echo htmlspecialchars($list_id); ?>">
 
         <label for="title">Τίτλος</label>
         <input type="text" id="title" name="title">
@@ -34,6 +34,6 @@ if (!$list_id) {
         </select>
         <button class="mb-1" type="submit">Προσθήκη</button>
     </form>
-    <a href="view_tasks.php?list_id=<?php echo $_GET['list_id']; ?>">Πίσω στη λίστα εργασιών</a>
+    <a href="view_tasks.php?list_id=<?php echo htmlspecialchars($list_id); ?>">Πίσω στη λίστα εργασιών</a>
 </div>
 <script src="js/validate-task.js"></script>
